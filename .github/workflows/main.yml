@@ -19,7 +19,8 @@ jobs:
       - name: Set up JDK
         uses: actions/setup-java@v3
         with:
-          java-version: '17'  # Specify JDK 17
+          java-version: '17'
+          distribution: 'temurin'  # Use 'temurin' for the latest OpenJDK builds
 
       - name: Cache Gradle packages
         uses: actions/cache@v3
