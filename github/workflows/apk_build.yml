@@ -3,23 +3,23 @@ name: Build APK
 on:
   push:
     branches:
-      - main  # Trigger the workflow on pushes to the main branch
+      - main
   pull_request:
     branches:
-      - main  # Trigger the workflow on pull requests to the main branch
+      - main
 
 jobs:
   build:
-    runs-on: ubuntu-latest  # Use the latest Ubuntu runner
+    runs-on: ubuntu-latest
 
     steps:
       - name: Checkout code
-        uses: actions/checkout@v3  # Checkout the repository code
+        uses: actions/checkout@v3
 
       - name: Set up JDK
         uses: actions/setup-java@v3
         with:
-          java-version: '17'  # Use JDK 17, or adjust as needed
+          java-version: '17'  # Specify JDK 17
 
       - name: Cache Gradle packages
         uses: actions/cache@v3
@@ -32,10 +32,10 @@ jobs:
             ${{ runner.os }}-gradle-
 
       - name: Build APK
-        run: ./gradlew assembleRelease  # Build the APK in release mode
+        run: ./gradlew assembleRelease
 
       - name: Upload APK
         uses: actions/upload-artifact@v3
         with:
           name: app-release
-          path: app/build/outputs/apk/release/app-release.apk  # Path to the APK
+          path: app/build/outputs/apk/release/app-release.apk
